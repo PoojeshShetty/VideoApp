@@ -1,0 +1,42 @@
+.sidebar__container{
+    width:15rem;
+    height:100vh;
+    position:fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    border:1px solid red;
+    background-color: white;
+    z-index: 400;
+    transition: transform 0.3s ease-in;
+}
+
+.sidebar__content{
+    margin-top:5rem;
+}
+
+.sidebar__container.slide__in{
+    transform: translateX(0);
+}
+
+@media screen and (min-width:1200px) {
+    
+    .sidebar__container{
+        display: block;
+    }
+
+    .sidebar__close{
+        display: none;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    
+    .sidebar__container{
+        transform: translateX(-100%);
+    }
+
+    .sidebar__close{
+        display: block;
+    }
+}
