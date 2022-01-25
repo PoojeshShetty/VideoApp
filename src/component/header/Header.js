@@ -6,12 +6,27 @@ function Header({showSidebar, setShowSidebar}) {
   const handleOpenSidebar = () => {
       setShowSidebar(true)
   }
+
+  const handleClose = () => {
+    setShowSidebar(false)
+  }
+
   return (
       <div className="header__container">
           
           <div className="header__content">
-            <span className="sidebar__btn" onClick={handleOpenSidebar}>
-                    <button>open</button>
+            <span className="sidebar__btn" >
+                    
+                    {
+                        !showSidebar ? 
+                        <button onClick={handleOpenSidebar}>
+                            <img src="/svg/menu.svg" alt="open" />
+                        </button> : 
+                        <button onClick={handleClose}>
+                            <img src="/svg/close.svg" alt="close" />
+                        </button>
+                    }
+
                 </span>
               <div className="logo">
                   Video App
