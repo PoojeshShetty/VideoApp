@@ -1,35 +1,35 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import './VedioPage.css'
+import './VideoPage.css'
 
-const initVedio = {
-    title:'Test Vedio',
+const initVideo = {
+    title:'Test Video',
     ytId: 'TPrnSACiTJ4&list=PLjEaoINr3zgEq0u2MzVgAaHEBt--xLB6U',
-    description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, asperiores impedit sed illo, nobis iusto consequatur quis totam odio, cupiditate repellat ea quibusdam velit. Saepe, sapiente quaerat. Inventore, laborum atque.",
+    description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, asperiores impidet sed illo, nobis iusto consequatur quis totam odio, cupiditate repellat ea quibusdam velit. Saepe, sapiente quaerat. Inventore, laborum atque.",
     profileImg: 'https://yt3.ggpht.com/ytc/AAUvwni4mtAMfuk6MoqYaqvMdoJEyF7obLkT-tRPzP3r=s88-c-k-c0x00ffffff-no-rj',
     profileName: 'Poojesh Shetty'
 }
 
-function VedioPage() {
+function VideoPage() {
   return (
-      <div className="vediopage__container">
+      <div className="videopage__container">
 
-        <div className="viewvedio">
+        <div className="viewvideo">
           <div className="flex__left">
-                <div className="playvedio">
+                <div className="playvideo">
                     <ReactPlayer
                         width="100%"
                         height="100%"
                         controls
-                        url={`https://www.youtube.com/watch?v=${initVedio.ytId}`}
+                        url={`https://www.youtube.com/watch?v=${initVideo.ytId}`}
                     />
                 </div>
 
-                <div className="vedio__title">
-                    {initVedio.title}
+                <div className="video__title">
+                    {initVideo.title}
                 </div>
 
-                <div className="vedio__action">
+                <div className="video__action">
                     <div className="action">
                         <div className="action__img">
                             <img src="/svg/like.svg" alt="" />
@@ -68,20 +68,20 @@ function VedioPage() {
                     
                 </div>
 
-                <div className="viewvedio__info">
+                <div className="viewvideo__info">
                     
                     <div className="profile">
                         <div className="profile__img">
-                            <img src={initVedio.profileImg} alt="" />
+                            <img src={initVideo.profileImg} alt="" />
                         </div>
 
                         <div className="profile__name">
-                            {initVedio.profileName}
+                            {initVideo.profileName}
                         </div>
                     </div>
 
-                    <div className="vedio__description">
-                        {initVedio.description}
+                    <div className="video__description">
+                        {initVideo.description}
                     </div>
                 </div>
 
@@ -100,4 +100,4 @@ function VedioPage() {
   )
 }
 
-export default VedioPage;
+export default VideoPage;

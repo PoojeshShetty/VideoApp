@@ -6,11 +6,16 @@ import  {Switch, Route} from 'react-router-dom'
 import LoginPage from './page/login/LoginPage'
 import SignupPage from './page/signup/SignupPage';
 import HomePage from './page/home/HomePage';
-import VedioPage from './page/vedio/VedioPage';
+import VideoPage from './page/video/VideoPage';
+import useVideoContext from './hooks/useVideoContext';
 
 function App() {
 
   const [showSidebar, setShowSidebar] = useState(false)
+
+  const context = useVideoContext()
+
+  console.log(context)
 
   return (
     <div className="App">
@@ -32,8 +37,8 @@ function App() {
               <HomePage />
             </Route>
 
-            <Route path="/vedio">
-              <VedioPage />
+            <Route path="/video">
+              <VideoPage />
             </Route>
           </Switch>
 

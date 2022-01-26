@@ -1,20 +1,20 @@
-.vediopage__container{
+.videopage__container{
     padding:1em 2em;
 }
 
-.viewvedio{
+.viewvideo{
     display: flex;
     justify-content: space-between;
 }
 
-.viewvedio__info{
+.viewvideo__info{
     border-top:1px solid #777;
     border-bottom: 1px solid #777;
     margin:0.5em 0;
     padding:1em 0;
 }
 
-.vedio__title{
+.video__title{
     font-size: 1.7rem;
     margin-top: 0.8em;
     word-spacing: 0.3ch;
@@ -22,7 +22,7 @@
     font-weight: 600;
 }
 
-.vedio__action{
+.video__action{
     display: flex;
     justify-content: space-around;
     margin-top: 0.8em;
@@ -82,14 +82,14 @@
     height:100%;
 }
 
-.vedio__description{
+.video__description{
     font-size: 1.1rem;
     word-spacing: 0.3ch;
     text-align: justify;
 }
 @media screen and (min-width:1200px){
     
-    .viewvedio{
+    .viewvideo{
         flex-direction: row;
     }
 
@@ -103,7 +103,7 @@
         height:30vw;
     }
 
-    .playvedio{
+    .playvideo{
         height: 30vw;
     }
     
@@ -111,7 +111,7 @@
 
 @media screen and (max-width:1200px) {
 
-    .viewvedio{
+    .viewvideo{
         flex-direction: column;
     }
     
@@ -124,7 +124,7 @@
         height: 200px;
     }
     
-    .playvedio{
+    .playvideo{
         height: 50vw;
     }
 
@@ -132,7 +132,7 @@
 
 @media screen and (max-width:600px) {
     
-    .playvedio{
+    .playvideo{
         height: 60vw;
     }
 }
