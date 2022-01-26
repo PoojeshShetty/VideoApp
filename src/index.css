@@ -9,3 +9,16 @@ body{
     font-size: 16px;
     margin:0;
 }
+
+.btn{
+    background: none;
+    border:1px solid black;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: white;
+    color:black;
+}

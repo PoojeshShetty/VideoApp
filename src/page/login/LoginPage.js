@@ -3,7 +3,6 @@ import './LoginPage.css'
 
 function LoginPage() {
 
-  const [username,setUsername] = useState('')
   const [email,setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -12,7 +11,6 @@ function LoginPage() {
       e.preventDefault()
 
       console.log({
-        username,
         email,
         password
       })
@@ -20,21 +18,12 @@ function LoginPage() {
 
   return (
       <div className="login__container">
-          
+
           <form className="login__form" onSubmit={(e) => handleSubmit(e)}>
 
-            <div className="form__controle">
-
-              <label>Username</label>
-              <input 
-                type="text" 
-                placeholder='Username'
-                value={username} 
-                onChange={({target}) => setUsername(target.value)}
-                required
-              />
-
-            </div>
+          <div className="login__title">
+            Login
+          </div> 
 
             <div className="form__controle">
 
@@ -62,7 +51,7 @@ function LoginPage() {
 
             </div>
             
-            <button>Submit</button>
+            <button className='btn'>Submit</button>
           </form>
       </div>
   )
