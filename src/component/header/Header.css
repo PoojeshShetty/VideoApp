@@ -31,6 +31,7 @@
 .sidebar__btn button{
     background:none;
     border:1px solid #777;
+    cursor: pointer;
 }
 
 button img{

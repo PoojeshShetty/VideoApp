@@ -6,6 +6,7 @@ import  {Switch, Route} from 'react-router-dom'
 import LoginPage from './page/login/LoginPage'
 import SignupPage from './page/signup/SignupPage';
 import HomePage from './page/home/HomePage';
+import VedioPage from './page/vedio/VedioPage';
 
 function App() {
 
@@ -16,7 +17,7 @@ function App() {
         <Header showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
           <div className="App__container">
-            
+
           <Switch>
 
             <Route path="/login">
@@ -31,6 +32,9 @@ function App() {
               <HomePage />
             </Route>
 
+            <Route path="/vedio">
+              <VedioPage />
+            </Route>
           </Switch>
 
           </div>
