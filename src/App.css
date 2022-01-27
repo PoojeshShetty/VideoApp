@@ -1,5 +1,6 @@
 .App__container{
     margin-top: 5rem;
+    padding-bottom: 10px;
     min-height: 90vh;
 }
 

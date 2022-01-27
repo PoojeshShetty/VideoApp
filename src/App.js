@@ -8,6 +8,7 @@ import SignupPage from './page/signup/SignupPage';
 import HomePage from './page/home/HomePage';
 import VideoPage from './page/video/VideoPage';
 import useVideoContext from './hooks/useVideoContext';
+import PlayListPage from './page/playlists/PlayListPage';
 
 function App() {
 
@@ -40,6 +41,11 @@ function App() {
             <Route path="/video">
               <VideoPage />
             </Route>
+
+            <Route path="/playlists">
+              <PlayListPage />
+            </Route>
+            
           </Switch>
 
           </div>
