@@ -1,0 +1,13 @@
+.playlistpage__container{
+    padding:10px;
+}
+
+.playlist__video{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 10px;
+}
+
+.playlist__video .video__container{
+    margin:0 auto;
+}

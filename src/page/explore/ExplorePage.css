@@ -1,0 +1,27 @@
+.explorepage__container{
+    padding:10px;
+}
+
+.explorepage__title{
+    font-size: 1.6rem;
+    font-weight: 900;
+    margin:1em 0;
+}
+
+.explorepage__videos{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap:10px;
+}
+
+.explorepage__videos .video__container{
+    margin:0 auto;
+}
+
+.explorepage__videos .video__container:hover{
+    transform: scale(1.1);
+}
+.explorepage__videos a{
+    text-decoration: none;
+    color: inherit;
+}

@@ -27,11 +27,11 @@ function VideoPage() {
                     />
                 </div>
 
-                <div className="video__title">
+                <div className="videopage__title">
                     {initVideo.title}
                 </div>
 
-                <div className="video__action">
+                <div className="videopage__action">
                     <div className="action">
                         <div className="action__img">
                             <img src="/svg/like.svg" alt="" />
@@ -82,7 +82,7 @@ function VideoPage() {
                         </div>
                     </div>
 
-                    <div className="video__description">
+                    <div className="videopage__description">
                         {initVideo.description}
                     </div>
                 </div>
