@@ -12,6 +12,7 @@ import PlayListPage from './page/playlists/PlayListPage';
 import ViewPlayListPage from './page/playlist/ViewPlaylistPage';
 import ExplorePage from './page/explore/ExplorePage';
 import LikePage from './page/like/LikePage';
+import SavePage from './page/save/SavePage';
 
 function App() {
 
@@ -61,6 +62,10 @@ function App() {
               <LikePage />
             </Route>
             
+            <Route path="/save">
+              <SavePage />
+            </Route>
+
           </Switch>
 
           </div>
