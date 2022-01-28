@@ -11,6 +11,7 @@ import useVideoContext from './hooks/useVideoContext';
 import PlayListPage from './page/playlists/PlayListPage';
 import ViewPlayListPage from './page/playlist/ViewPlaylistPage';
 import ExplorePage from './page/explore/ExplorePage';
+import LikePage from './page/like/LikePage';
 
 function App() {
 
@@ -54,6 +55,10 @@ function App() {
             
             <Route path="/explore">
               <ExplorePage />
+            </Route>
+            
+            <Route path="/like">
+              <LikePage />
             </Route>
             
           </Switch>
