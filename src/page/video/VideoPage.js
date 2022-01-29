@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
+import { useVideo } from '../../hooks/useVideo';
+import useVideoContext from '../../hooks/useVideoContext';
 import './VideoPage.css'
 
 const initVideo ={
@@ -13,6 +15,26 @@ const initVideo ={
 } 
 
 function VideoPage() {
+
+    const {likeVideo, removeLike, saveVideo, removeSave} = useVideo()
+    const {like,save} = useVideoContext()
+
+    const handleLike = () => {
+        likeVideo(initVideo)
+    }
+
+    const handleRemoveLike = () => {
+        removeLike(initVideo)
+    }
+    
+    const handleSave = () => {
+        saveVideo(initVideo)
+    }
+
+    const handleRemoveSave = () => {
+        removeSave(initVideo)
+    }
+
   return (
       <div className="videopage__container">
 
@@ -30,25 +52,48 @@ function VideoPage() {
                 <div className="videopage__title">
                     {initVideo.title}
                 </div>
-
+                
                 <div className="videopage__action">
-                    <div className="action">
-                        <div className="action__img">
-                            <img src="/svg/like.svg" alt="" />
-                        </div>
-                        <div className="action__type">
-                            Like
-                        </div>
-                    </div>
 
-                    <div className="action">
-                        <div className="action__img">
-                            <img src="/svg/bookmark.svg" alt="" />
+                    {
+                        like.map(vedio=>vedio.id).includes(initVideo.id) ?
+                        <div className="action" onClick={handleRemoveLike}>
+                            <div className="action__img btn--liked">
+                                <img src="/svg/like.svg" alt="" />
+                            </div>
+                            <div className="action__type">
+                                Like
+                            </div>
+                        </div> :
+                        <div className="action" onClick={handleLike}>
+                            <div className="action__img">
+                                <img src="/svg/like.svg" alt="" />
+                            </div>
+                            <div className="action__type">
+                                Like
+                            </div>
                         </div>
-                        <div className="action__type">
-                            Save
+                    }
+
+                    {
+                        save.map(video=>video.id).includes(initVideo.id) ?
+                        <div className="action" onClick={handleRemoveSave}>
+                            <div className="action__img">
+                                <img src="/svg/addedbookmark.svg" alt="" />
+                            </div>
+                            <div className="action__type">
+                                Save
+                            </div>
+                        </div> :
+                        <div className="action" onClick={handleSave}>
+                            <div className="action__img">
+                                <img src="/svg/bookmark.svg" alt="" />
+                            </div>
+                            <div className="action__type">
+                                Save
+                            </div>
                         </div>
-                    </div>
+                    }
 
                     <div className="action">
                         <div className="action__img">

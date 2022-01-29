@@ -2,6 +2,7 @@ import {useState} from 'react';
 import Video from '../../component/video/Video';
 import { Link } from 'react-router-dom';
 import './ExplorePage.css'
+import { useVideo } from '../../hooks/useVideo';
 
 const initVideo = [
     {
@@ -53,7 +54,7 @@ const initVideo = [
 function ExplorePage() {
 
     const [query, setQuery] = useState('')
-
+    
     return (
         <div className="explorepage__container">
             <div className="explorepage__title">
