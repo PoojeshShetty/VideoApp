@@ -22,3 +22,9 @@ body{
     background-color: white;
     color:black;
 }
+
+.btn--disabled{
+    background-color: white;
+    color:black;
+    cursor:context-menu;
+}

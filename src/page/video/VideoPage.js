@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
+import { useState } from 'react/cjs/react.development';
+import PlayList from '../../component/playlist/PlayList';
+import PlaylistOption from '../../component/playlistoption/PlaylistOption';
 import { useVideo } from '../../hooks/useVideo';
 import useVideoContext from '../../hooks/useVideoContext';
 import './VideoPage.css'
@@ -17,7 +20,8 @@ const initVideo ={
 function VideoPage() {
 
     const {likeVideo, removeLike, saveVideo, removeSave} = useVideo()
-    const {like,save} = useVideoContext()
+    const {like,save, playlists, selectedPlaylist, dispatchVideo} = useVideoContext()
+    const [showPlaylist, setShowPlaylist] = useState(false)
 
     const handleLike = () => {
         likeVideo(initVideo)
@@ -35,6 +39,11 @@ function VideoPage() {
         removeSave(initVideo)
     }
 
+    const handleShare = () => {
+        navigator.clipboard.writeText(`https://youtube.com`)
+    }
+
+    
   return (
       <div className="videopage__container">
 
@@ -52,6 +61,7 @@ function VideoPage() {
                 <div className="videopage__title">
                     {initVideo.title}
                 </div>
+                
                 
                 <div className="videopage__action">
 
@@ -95,7 +105,7 @@ function VideoPage() {
                         </div>
                     }
 
-                    <div className="action">
+                    <div className="action" onClick={() => setShowPlaylist(true)}>
                         <div className="action__img">
                             <img src="/svg/playList.svg" alt="" />
                         </div>
@@ -104,7 +114,7 @@ function VideoPage() {
                         </div>
                     </div>
 
-                    <div className="action">
+                    <div className="action" onClick={handleShare}>
                         <div className="action__img">
                             <img src="/svg/share.svg" alt="" />
                         </div>
@@ -134,14 +144,17 @@ function VideoPage() {
 
             </div>
 
-            
-
+    
             <div className="flex__right">
                 <div className="note">
                     Take note
                 </div>
             </div>
         </div>
+
+        {
+            showPlaylist && <PlaylistOption setShowPlaylist={setShowPlaylist}/>
+        }
 
       </div>
   )

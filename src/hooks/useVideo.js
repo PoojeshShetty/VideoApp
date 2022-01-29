@@ -3,7 +3,7 @@ import useVideoContext from './useVideoContext';
 
 function useVideo() {
     
-    const {like, save, dispatchVideo} = useVideoContext()
+    const {like, save,playlists, dispatchVideo} = useVideoContext()
 
     const likeVideo = (vedio) => {
 
@@ -58,11 +58,25 @@ function useVideo() {
         }
     }
 
+    const addPlaylist = (playlistName) => {
+
+        try{
+
+            let newPlaylist = playlists.concat({id:3,name:playlistName})
+
+            dispatchVideo({type: 'ADD_NEW_PLAYLIST', payload: newPlaylist})
+        }catch(err)
+        {
+            console.log(err.message)
+        }
+    }
+
     return {
         likeVideo,
         removeLike,
         saveVideo,
-        removeSave
+        removeSave,
+        addPlaylist
     }
 }
 
