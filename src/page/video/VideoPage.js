@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 import { useState } from 'react/cjs/react.development';
+import Note from '../../component/note/Note';
 import PlayList from '../../component/playlist/PlayList';
 import PlaylistOption from '../../component/playlistoption/PlaylistOption';
 import { useVideo } from '../../hooks/useVideo';
@@ -146,9 +147,7 @@ function VideoPage() {
 
     
             <div className="flex__right">
-                <div className="note">
-                    Take note
-                </div>
+                <Note />
             </div>
         </div>
 
