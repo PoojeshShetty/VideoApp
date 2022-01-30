@@ -54,7 +54,8 @@ const initialVideoState = {
         }
     ],
     selectedPlaylist: [],
-    save : []
+    save : [],
+    notes: []
 }
 
 export {

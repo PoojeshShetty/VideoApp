@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import LoadingNotes from '../loadingnotes/LoadingNotes';
 import NoteText from '../notetext/NoteText';
 import './Note.css'
 
@@ -20,12 +21,14 @@ const notes = [
         id: '5'
     }
 ]
+
 function Note() {
 
     const [notevalue, setNoteValue] = useState('')
 
     return (
         <div className="note__container">
+
             <div className="note__title">
                 Notes
             </div>
@@ -47,6 +50,9 @@ function Note() {
                 />
                 <button className='btn'>Add</button>
             </div>
+
+
+            <LoadingNotes />
         </div>
     )
 }
