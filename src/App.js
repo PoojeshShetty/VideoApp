@@ -13,13 +13,16 @@ import ViewPlayListPage from './page/playlist/ViewPlaylistPage';
 import ExplorePage from './page/explore/ExplorePage';
 import LikePage from './page/like/LikePage';
 import SavePage from './page/save/SavePage';
+import { useAuthContext } from './hooks/useAuthContext';
 
 function App() {
 
   const [showSidebar, setShowSidebar] = useState(false)
 
   const context = useVideoContext()
-
+  const authcontext = useAuthContext()
+  
+  console.log(authcontext)
   console.log(context)
 
   return (

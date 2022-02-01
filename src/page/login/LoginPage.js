@@ -1,19 +1,18 @@
 import {useState} from 'react';
+import useLogin from '../../hooks/useLogin';
 import './LoginPage.css'
 
 function LoginPage() {
 
   const [email,setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const {login,pending,error} = useLogin()
 
   const handleSubmit = (e) => {
 
       e.preventDefault()
 
-      console.log({
-        email,
-        password
-      })
+      login(email,password)
   }
 
   return (
@@ -21,9 +20,15 @@ function LoginPage() {
 
           <form className="login__form" onSubmit={(e) => handleSubmit(e)}>
 
-          <div className="login__title">
-            Login
-          </div> 
+            <div className="login__title">
+              Login
+            </div> 
+
+            {
+              error && <div className="error--info">
+                {error}
+              </div>
+            }
 
             <div className="form__controle">
 
@@ -51,7 +56,12 @@ function LoginPage() {
 
             </div>
             
-            <button className='btn'>Submit</button>
+            {
+              pending ? 
+              <button className='btn btn--disabled' disabled>Loading</button> :
+              <button className='btn'>Submit</button>
+            }
+
           </form>
       </div>
   )

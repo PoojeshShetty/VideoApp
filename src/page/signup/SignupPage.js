@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import useSignup from '../../hooks/useSignup';
 import './SignupPage.css'
 
 function SignupPage() {
@@ -6,18 +7,39 @@ function SignupPage() {
     const [email,setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [username, setUsername] = useState('')
+    const [formError, setFormError] = useState(null)
+    const {pending, error, signup} = useSignup()
 
     const handleSubmit = (e) => {
 
         e.preventDefault()
-  
-        console.log({
-          username,
-          email,
-          password
-        })
+
+        if(checkFormError())
+        {
+            setTimeout(()=> setFormError(null), 7000)
+            return
+        }
+
+        signup(email,password, username)
     }
   
+    const checkFormError = () => {
+
+        if(username.length>20)
+        {
+            setFormError("username cannot be greater than 20 characters")
+            return true
+        }
+
+        if(password.length<10)
+        {
+            setFormError("password length should be greater than or equal to 10")
+            return true
+        }
+
+        return false
+    }
+
     return (
         <div className="signup__container">
             <div className="signup__container">
@@ -27,6 +49,16 @@ function SignupPage() {
                     <div className="signup__title">
                         Signup
                     </div> 
+
+                    {
+                        error && <div className='error--info'>{error}</div>
+                    }
+
+                    {
+                        formError && <div className="error--info">
+                            {formError}
+                        </div>
+                    }
 
                     <div className="form__controle">
 
@@ -67,7 +99,11 @@ function SignupPage() {
 
                     </div>
                     
-                    <button className='btn'>Submit</button>
+                    {
+                        pending ? 
+                        <button className='btn btn--disabled' disabled>Submit</button> :
+                        <button className='btn'>Submit</button>
+                    }
                 </form> 
             </div>
         </div>
