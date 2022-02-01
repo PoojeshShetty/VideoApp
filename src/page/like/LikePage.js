@@ -2,7 +2,7 @@ import React from 'react';
 import './LikePage.css'
 import {Link} from 'react-router-dom'
 import Video from '../../component/video/Video';
-
+import Loading from '../../component/loading/Loading';
 const initVideo = [
     {
         id:1,
@@ -72,6 +72,7 @@ function LikePage() {
                 ))
             }
           </div>
+
       </div>
   )
 }

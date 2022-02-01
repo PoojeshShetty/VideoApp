@@ -1,7 +1,7 @@
 import React from 'react'
-import './LoadingNotes.css'
+import './Loading.css'
 
-function LoadingNotes() {
+function Loading() {
     return (
         <div className='loading__container'>
             <div className="spinner">
@@ -13,4 +13,4 @@ function LoadingNotes() {
     )
 }
 
-export default LoadingNotes
+export default Loading
