@@ -3,7 +3,7 @@ import './LoadingNotes.css'
 
 function LoadingNotes() {
     return (
-        <div className='loading__container'>
+        <div className='loadingnotes__container'>
             <div className="spinner">
                 <div className="bounce1"></div>
                 <div className="bounce2"></div>

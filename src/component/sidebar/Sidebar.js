@@ -1,8 +1,12 @@
 import React from 'react';
 import './Sidebar.css';
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
-function Sidebar({showSidebar}) {
+function Sidebar({showSidebar, setShowSidebar}) {
+
+    const closeSidebar = () => {
+        setShowSidebar(false)
+    }
 
   return (
       <div className={showSidebar ? "sidebar__container slide__in" : "sidebar__container"}>
@@ -10,8 +14,8 @@ function Sidebar({showSidebar}) {
               
             <ul className='sidebar__links'>
                 <li>
-                    <Link to="/Home">
-                        <div className="sidebar__link">
+                    <NavLink to="/Home">
+                        <div className="sidebar__link" onClick={closeSidebar}>
                             <div className="link__img">
                                 <img src="/svg/bookmark.svg" alt="" />
                             </div>
@@ -19,12 +23,12 @@ function Sidebar({showSidebar}) {
                                 Home
                             </div>
                         </div>
-                    </Link>
+                    </NavLink>
                 </li>
 
                 <li>
-                    <Link to="/explore">
-                        <div className="sidebar__link">
+                    <NavLink to="/explore">
+                        <div className="sidebar__link" onClick={closeSidebar}>
                             <div className="link__img">
                                 <img src="/svg/bookmark.svg" alt="" />
                             </div>
@@ -32,12 +36,12 @@ function Sidebar({showSidebar}) {
                                 Explore
                             </div>
                         </div>
-                    </Link>
+                    </NavLink>
                 </li>
 
                 <li>
-                    <Link to="/playlists">
-                        <div className="sidebar__link">
+                    <NavLink to="/playlists">
+                        <div className="sidebar__link" onClick={closeSidebar}>
                             <div className="link__img">
                                 <img src="/svg/bookmark.svg" alt="" />
                             </div>
@@ -45,12 +49,12 @@ function Sidebar({showSidebar}) {
                                 PlayList
                             </div>
                         </div>
-                    </Link>
+                    </NavLink>
                 </li>
 
                 <li>
-                    <Link to="/like">
-                        <div className="sidebar__link">
+                    <NavLink to="/like">
+                        <div className="sidebar__link" onClick={closeSidebar}>
                             <div className="link__img">
                                 <img src="/svg/bookmark.svg" alt="" />
                             </div>
@@ -58,7 +62,7 @@ function Sidebar({showSidebar}) {
                                 Like
                             </div>
                         </div>
-                    </Link>
+                    </NavLink>
                 </li>
             </ul>
           </div>

@@ -10,12 +10,12 @@ import './VideoPage.css'
 
 const initVideo ={
     id:1,
-    title:'Test Video',
-    ytId: 'TPrnSACiTJ4&list=PLjEaoINr3zgEq0u2MzVgAaHEBt--xLB6U',
-    description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, asperiores impidet sed illo, nobis iusto consequatur quis totam odio, cupiditate repellat ea quibusdam velit. Saepe, sapiente quaerat. Inventore, laborum atque.",
-    profileImg: 'https://yt3.ggpht.com/ytc/AAUvwni4mtAMfuk6MoqYaqvMdoJEyF7obLkT-tRPzP3r=s88-c-k-c0x00ffffff-no-rj',
-    profileName: 'Poojesh Shetty',
-    thumbnailUrl: '',
+    title:'React & TypeScript - Course for Beginners',
+        ytId: 'FJDVKeh7RJI',
+        description: "Learn how to build React apps using TypeScript. First, learn the basics of TypeScript. Then, learn how to integrate TypeScript in a React app by building an awesome project. You will learn how to use TypeScript with React Hooks such as useState, useRef, and useReducers. You will also learn how to pass props from one component to another by defining prop types of the component. And you will learn much more!",
+        profileImg: 'https://yt3.ggpht.com/ytc/AKedOLRyPFojwY3CXV5ks5TwPrt2VifQn-nYNfkgLvVPkw=s176-c-k-c0x00ffffff-no-rj',
+        profileName: 'FreeCode Camp',
+        thumbnailUrl: 'https://i.ytimg.com/vi/FJDVKeh7RJI/hqdefault.jpg?s…AFwAcABBg==&rs=AOn4CLCMP5VO6ae9bTAxYmzmvCQzIdLhHQ',
 } 
 
 function VideoPage() {
@@ -130,7 +130,7 @@ function VideoPage() {
                     
                     <div className="profile">
                         <div className="profile__img">
-                            <img src={initVideo.profileImg} alt="" />
+                            <img src={initVideo.profileImg} alt="profile" />
                         </div>
 
                         <div className="profile__name">

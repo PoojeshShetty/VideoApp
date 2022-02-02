@@ -14,6 +14,7 @@ import ExplorePage from './page/explore/ExplorePage';
 import LikePage from './page/like/LikePage';
 import SavePage from './page/save/SavePage';
 import { useAuthContext } from './hooks/useAuthContext';
+import AddVideoPage from './page/admin/addVideo/AddVideoPage';
 
 function App() {
 
@@ -69,6 +70,9 @@ function App() {
               <SavePage />
             </Route>
 
+            <Route path="/admin/addVideo">
+              <AddVideoPage />
+            </Route>
           </Switch>
 
           </div>
