@@ -1,5 +1,7 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import { useVideo } from '../../../hooks/useVideo';
 import './AddVideoPage.css'
+import {useHistory} from 'react-router-dom'
 
 function AddVideoPage() {
 
@@ -9,12 +11,20 @@ function AddVideoPage() {
   const [profileName, setProfileName] = useState('')
   const [profileImg, setProfileImg] = useState('')
   const [thumbnailUrl, setThumbnailUrl] = useState('')
+  const {addVideo, pending, success} = useVideo()
+  const history = useHistory()
+
+  useEffect(()=>{
+    if(!success) return
+
+    history.push('/explore')
+  },[success,history])
 
   const handleFormSubmit = (e) => {
 
     e.preventDefault();
 
-    console.log({
+    addVideo({
       title,
       ytId,
       description,
@@ -99,7 +109,12 @@ function AddVideoPage() {
           />
         </div>
         
-        <button className='btn'>Add</button>
+        {
+          pending ?
+          <button className='btn btn--disabled' disabled>Adding</button> :
+          <button className='btn'>Add</button>
+        }
+
       </form>
     </div>
   )

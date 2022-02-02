@@ -1,12 +1,11 @@
-import React from 'react';
+import {useEffect,useState} from 'react';
 import ReactPlayer from 'react-player';
-import { useState } from 'react/cjs/react.development';
 import Note from '../../component/note/Note';
-import PlayList from '../../component/playlist/PlayList';
 import PlaylistOption from '../../component/playlistoption/PlaylistOption';
 import { useVideo } from '../../hooks/useVideo';
 import useVideoContext from '../../hooks/useVideoContext';
 import './VideoPage.css'
+import { useParams } from 'react-router-dom';
 
 const initVideo ={
     id:1,
@@ -21,8 +20,14 @@ const initVideo ={
 function VideoPage() {
 
     const {likeVideo, removeLike, saveVideo, removeSave} = useVideo()
-    const {like,save, playlists, selectedPlaylist, dispatchVideo} = useVideoContext()
+    const {like,save} = useVideoContext()
     const [showPlaylist, setShowPlaylist] = useState(false)
+    const {id} = useParams()
+    const [fetchVideo, setFetchVideo] = useState(null)
+
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    },[])
 
     const handleLike = () => {
         likeVideo(initVideo)

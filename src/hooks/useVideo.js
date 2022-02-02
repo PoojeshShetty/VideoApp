@@ -1,9 +1,13 @@
 import {useState} from 'react';
 import useVideoContext from './useVideoContext';
+import {projectFirestore} from '../config/firebase'
 
 function useVideo() {
     
     const {like, save,playlists, dispatchVideo} = useVideoContext()
+    const [pending, setPending] = useState(false)
+    const [error, setError] = useState(null)
+    const [success, setSuccess] = useState(null)
 
     const likeVideo = (vedio) => {
 
@@ -71,12 +75,31 @@ function useVideo() {
         }
     }
 
+    const addVideo = async (videoObj) => {
+
+        setPending(true)
+
+        try{
+            await projectFirestore.collection('videos').add(videoObj)
+
+            setSuccess(true)
+        }catch(err){
+            console.log(err.message)
+        }
+
+        setPending(false)
+        
+    }
+
     return {
         likeVideo,
         removeLike,
         saveVideo,
         removeSave,
-        addPlaylist
+        addVideo,
+        addPlaylist,
+        pending,
+        success
     }
 }
 

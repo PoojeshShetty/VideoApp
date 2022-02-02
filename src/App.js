@@ -46,7 +46,7 @@ function App() {
               <HomePage />
             </Route>
 
-            <Route path="/video">
+            <Route path="/video/:id">
               <VideoPage />
             </Route>
 
