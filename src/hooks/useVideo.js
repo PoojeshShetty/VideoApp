@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import useVideoContext from './useVideoContext';
 import {projectFirestore} from '../config/firebase'
+import { useAuthContext } from './useAuthContext';
 
 function useVideo() {
     
@@ -8,32 +9,41 @@ function useVideo() {
     const [pending, setPending] = useState(false)
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(null)
+    const {user} = useAuthContext()
 
-    const likeVideo = (vedio) => {
+    const likeVideo = async (vedio) => {
 
+        setPending(true)
         try{
-
+            
             let newLike = like.concat(vedio)
             dispatchVideo({type: 'LIKE_VIDEO', payload: newLike})
 
+            await projectFirestore.collection(`/likes/${user.uid}/videos`).doc(vedio.id).set(vedio)
+
         }catch(err)
         {
             console.log(err.message)
         }
 
+        setPending(false)
     }
 
-    const removeLike = (vedio) => {
+    const removeLike = async (video) => {
 
+        setPending(true)
         try{
+            await projectFirestore.collection(`/likes/${user.uid}/videos`).doc(video.id).delete()
 
-            let newLike = like.filter(ved => ved.id !== vedio.id)
+            let newLike = like.filter(ved => ved.id !== video.id)
             dispatchVideo({type:'REMOVE_LIKE', payload: newLike})
+
         }catch(err)
         {
             console.log(err.message)
         }
 
+        setPending(false)
     }
 
     const saveVideo = (video) => {

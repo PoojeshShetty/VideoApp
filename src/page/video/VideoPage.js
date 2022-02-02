@@ -21,7 +21,7 @@ const initVideo ={
 
 function VideoPage() {
 
-    const {likeVideo, removeLike, saveVideo, removeSave} = useVideo()
+    const {likeVideo, removeLike, saveVideo, removeSave, pending} = useVideo()
     const {like,save} = useVideoContext()
     const [showPlaylist, setShowPlaylist] = useState(false)
     const {id} = useParams()
@@ -49,10 +49,12 @@ function VideoPage() {
     },[id])
 
     const handleLike = (video) => {
+        if(!pending) 
         likeVideo(video)
     }
 
     const handleRemoveLike = (video) => {
+        if(!pending) 
         removeLike(video)
     }
     
