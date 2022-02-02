@@ -6,6 +6,8 @@ import { useVideo } from '../../hooks/useVideo';
 import useVideoContext from '../../hooks/useVideoContext';
 import './VideoPage.css'
 import { useParams } from 'react-router-dom';
+import { projectFirestore } from '../../config/firebase';
+import Loading from '../../component/loading/Loading';
 
 const initVideo ={
     id:1,
@@ -29,27 +31,50 @@ function VideoPage() {
         window.scrollTo(0,0)
     },[])
 
-    const handleLike = () => {
-        likeVideo(initVideo)
+    useEffect(() => {
+
+        const fetchVideo = async () => {
+            const res = await projectFirestore.collection('videos').doc(id).get()
+            
+            if(res.exists)
+            {
+                setFetchVideo({id:res.id,...res.data()})
+            }else
+            {
+                setFetchVideo('notexist')
+            }
+        }
+
+        fetchVideo()
+    },[id])
+
+    const handleLike = (video) => {
+        likeVideo(video)
     }
 
-    const handleRemoveLike = () => {
-        removeLike(initVideo)
+    const handleRemoveLike = (video) => {
+        removeLike(video)
     }
     
-    const handleSave = () => {
-        saveVideo(initVideo)
+    const handleSave = (video) => {
+        saveVideo(video)
     }
 
-    const handleRemoveSave = () => {
-        removeSave(initVideo)
+    const handleRemoveSave = (video) => {
+        removeSave(video)
     }
 
-    const handleShare = () => {
-        navigator.clipboard.writeText(`https://youtube.com`)
+    const handleShare = (video) => {
+        navigator.clipboard.writeText(`https://www.youtube.com/watch?v=${video.ytId}`)
     }
 
-    
+    if(!fetchVideo)
+    return <Loading />
+
+    if(fetchVideo === 'notexist')
+    return (
+        <div>Could not find video</div>
+    )
   return (
       <div className="videopage__container">
 
@@ -60,20 +85,20 @@ function VideoPage() {
                         width="100%"
                         height="100%"
                         controls
-                        url={`https://www.youtube.com/watch?v=${initVideo.ytId}`}
+                        url={`https://www.youtube.com/watch?v=${fetchVideo.ytId}`}
                     />
                 </div>
 
                 <div className="videopage__title">
-                    {initVideo.title}
+                    {fetchVideo.title}
                 </div>
                 
                 
                 <div className="videopage__action">
 
                     {
-                        like.map(vedio=>vedio.id).includes(initVideo.id) ?
-                        <div className="action" onClick={handleRemoveLike}>
+                        like.map(vedio=>vedio.id).includes(fetchVideo.id) ?
+                        <div className="action" onClick={()=>handleRemoveLike(fetchVideo)}>
                             <div className="action__img btn--liked">
                                 <img src="/svg/like.svg" alt="" />
                             </div>
@@ -81,7 +106,7 @@ function VideoPage() {
                                 Like
                             </div>
                         </div> :
-                        <div className="action" onClick={handleLike}>
+                        <div className="action" onClick={()=>handleLike(fetchVideo)}>
                             <div className="action__img">
                                 <img src="/svg/like.svg" alt="" />
                             </div>
@@ -92,8 +117,8 @@ function VideoPage() {
                     }
 
                     {
-                        save.map(video=>video.id).includes(initVideo.id) ?
-                        <div className="action" onClick={handleRemoveSave}>
+                        save.map(video=>video.id).includes(fetchVideo.id) ?
+                        <div className="action" onClick={()=>handleRemoveSave(fetchVideo)}>
                             <div className="action__img">
                                 <img src="/svg/addedbookmark.svg" alt="" />
                             </div>
@@ -101,7 +126,7 @@ function VideoPage() {
                                 Save
                             </div>
                         </div> :
-                        <div className="action" onClick={handleSave}>
+                        <div className="action" onClick={() => handleSave(fetchVideo)}>
                             <div className="action__img">
                                 <img src="/svg/bookmark.svg" alt="" />
                             </div>
@@ -120,7 +145,7 @@ function VideoPage() {
                         </div>
                     </div>
 
-                    <div className="action" onClick={handleShare}>
+                    <div className="action" onClick={() => handleShare(fetchVideo)}>
                         <div className="action__img">
                             <img src="/svg/share.svg" alt="" />
                         </div>
@@ -135,16 +160,16 @@ function VideoPage() {
                     
                     <div className="profile">
                         <div className="profile__img">
-                            <img src={initVideo.profileImg} alt="profile" />
+                            <img src={fetchVideo.profileImg} alt="profile" />
                         </div>
 
                         <div className="profile__name">
-                            {initVideo.profileName}
+                            {fetchVideo.profileName}
                         </div>
                     </div>
 
                     <div className="videopage__description">
-                        {initVideo.description}
+                        {fetchVideo.description}
                     </div>
                 </div>
 
