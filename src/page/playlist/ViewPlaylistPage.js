@@ -1,6 +1,9 @@
-import React from 'react';
+import {useEffect,useState} from 'react';
 import './ViewPlaylistPage.css'
 import Video from '../../component/video/Video'
+import { useParams } from 'react-router-dom';
+import useVideoContext from '../../hooks/useVideoContext';
+import { Link } from 'react-router-dom';
 
 const playList = [
   {
@@ -51,15 +54,32 @@ const playList = [
 ]
 
 function ViewPlayListPage() {
+
+  const {id} = useParams()
+  const {playlists} = useVideoContext()
+
+
+  const playlist = playlists.find(list => list.id === id)
+
+  
   return (
       <div className="playlistpage__container">
           <div className="playlistpage__title">
-            Play list name
+           {playlist.name}
           </div>
 
           <div className="playlist__video">
           {
-            playList.map(video=> <Video key={video.id} propVideo={video} />)
+            playlist.videos.map(video=> (
+              <Link className="playlist__videoview" to={`/video/${video.id}`} key={video.id}>
+                <Video key={video.id} propVideo={video} />
+
+                <div className="close__btn">
+                    <img src="/svg/close.svg" alt="" />
+                </div>
+
+              </Link>
+            ))
           }
           </div>
       </div>

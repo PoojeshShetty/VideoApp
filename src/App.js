@@ -31,7 +31,7 @@ function App() {
   return (
     <Loading />
   )
-  
+
   return (
     <div className="App">
         <Header showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
@@ -60,7 +60,7 @@ function App() {
               <PlayListPage />
             </Route>
 
-            <Route path="/playlist">
+            <Route path="/playlist/:id">
               <ViewPlayListPage />
             </Route>
             

@@ -7,7 +7,24 @@ import {Link} from 'react-router-dom'
 function PlayListPage() {
 
     const {playlists} = useVideoContext()
-    console.log({playlists})
+
+    const viewPlaylists = playlists.map(playlist => playlist.videos.length > 0 && (
+                    <Link to={`/playlist/${playlist.id}`} key={playlist.id}>
+                        <PlayList propsPlaylist={playlist} />
+                    </Link>
+                ))
+        
+    if(!viewPlaylists.reduce((a,b) => a||b, false))
+    return (
+        <div className="playlistpage__container">
+          <div className="playlistpage__title">
+              PlayLists
+          </div>
+          <div className="playlistpage__videos">
+              No Videos present
+          </div>
+        </div>
+    )
 
   return (
       <div className="playlistpage__container">
@@ -16,11 +33,7 @@ function PlayListPage() {
           </div>
           <div className="playlistpage__videos">
               {
-                  playlists.map(playlist => (
-                      <Link to={`/playlist/${playlist.id}`} key={playlist.id}>
-                          <PlayList propsPlaylist={playlist} />
-                      </Link>
-                  ))
+                  viewPlaylists
               }
           </div>
       </div>
