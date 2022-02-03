@@ -64,6 +64,20 @@ function Sidebar({showSidebar, setShowSidebar}) {
                         </div>
                     </NavLink>
                 </li>
+                
+                <li>
+                    <NavLink to="/save">
+                        <div className="sidebar__link" onClick={closeSidebar}>
+                            <div className="link__img">
+                                <img src="/svg/bookmark.svg" alt="" />
+                            </div>
+                            <div className="link__name">
+                                Save
+                            </div>
+                        </div>
+                    </NavLink>
+                </li>
+
             </ul>
           </div>
       </div>

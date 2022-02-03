@@ -2,28 +2,31 @@ import React from 'react';
 import { useState } from 'react/cjs/react.development';
 import { useVideo } from '../../hooks/useVideo';
 import useVideoContext from '../../hooks/useVideoContext';
+import Loading from '../loading/Loading';
 import './PlaylistOption.css'
+import {videoPresentInPlaylist} from '../../utils/utils'
 
-function PlaylistOption({setShowPlaylist}) {
+function PlaylistOption({setShowPlaylist, propsVideo}) {
 
-    const {playlists, selectedPlaylist, dispatchVideo} = useVideoContext()
+    const {playlists} = useVideoContext()
     const [addPlaylistOption, setAddPlaylistOption] = useState(false)
     const [newPlaylistName, setNewPlaylistName] = useState('')
-    const {addPlaylist} = useVideo()
+    const {addPlaylist,pending, addVideoToPlaylist, removeVideoFromPlaylist} = useVideo()
     
     const handleCheckbox = (playlist) => {
-        if(selectedPlaylist.map(list => list.id).includes(playlist.id)){
-            dispatchVideo({type: 'REMOVE_VIDEO_FROM_PLAYLIST', payload: selectedPlaylist.filter(list => list.id !== playlist.id)})
+        if(videoPresentInPlaylist(playlist,propsVideo)){
+            removeVideoFromPlaylist(playlist, propsVideo)
         }else
         {
-            dispatchVideo({type: 'ADD_VIDEO_FROM_PLAYLIST', payload: selectedPlaylist.concat(playlist)})
+            addVideoToPlaylist(playlist,propsVideo)
         }
     }
 
-    const handleAddPlaylist = () => {
+    const handleAddPlaylist = async () => {
 
-        addPlaylist(newPlaylistName)
-        setAddPlaylistOption(false)
+        await addPlaylist(newPlaylistName)
+
+        await setAddPlaylistOption(false)
         setNewPlaylistName('')
     }
 
@@ -39,17 +42,22 @@ function PlaylistOption({setShowPlaylist}) {
                 <div className="addplaylist__title">
                     Add playlist
                 </div>
-                <input 
-                    type="text"
-                    placeholder='Name' 
-                    value={newPlaylistName}
-                    onChange={({target}) => setNewPlaylistName(target.value)}
-                />
+                {
+                    pending ?
+                    <Loading /> :
+                    
+                    <input 
+                        type="text"
+                        placeholder='Name' 
+                        value={newPlaylistName}
+                        onChange={({target}) => setNewPlaylistName(target.value)}
+                    />
+                }
 
                 {
                     newPlaylistName === "" ?
-                    <button className="btn btn--disabled" disabled>Add</button> :
-                    <button className="btn" onClick={handleAddPlaylist}>Add</button>
+                    <button className="btn btn--disabled btn--add" disabled>Add</button> :
+                    <button className="btn btn--add" onClick={handleAddPlaylist}>Add</button>
                 }
 
                 <button className="btn btn--cancel" onClick={handleCancelAddPlaylist}>Cancel</button>
@@ -65,11 +73,20 @@ function PlaylistOption({setShowPlaylist}) {
                     {
                         playlists.map(playlist => (
                             <div className="playlist__item" key={playlist.id}>
-                                <input 
-                                    type="checkbox" 
-                                    checked={selectedPlaylist.map(list => list.id).includes(playlist.id)}
-                                    onChange={()=> handleCheckbox(playlist)}
-                                /> 
+                                {
+                                    pending ?
+                                    <input 
+                                        type="checkbox" 
+                                        checked={videoPresentInPlaylist(playlist,propsVideo)}
+                                        onChange={()=> handleCheckbox(playlist)}
+                                        disabled
+                                    /> :
+                                    <input 
+                                        type="checkbox" 
+                                        checked={videoPresentInPlaylist(playlist,propsVideo)}
+                                        onChange={()=> handleCheckbox(playlist)}
+                                    /> 
+                                }
                                 <span className='playlistitem__name'>{playlist.name}</span>
                             </div>
                         ))
@@ -83,8 +100,7 @@ function PlaylistOption({setShowPlaylist}) {
                     </div>
                 </div>
 
-                <button className="btn">Save</button>
-                <button className="btn btn--cancel" onClick={() => setShowPlaylist(false)}>Cancel</button>
+                <button className="btn btn--cancel" onClick={() => setShowPlaylist(false)}>Close</button>
             </div>
         </div>
     )

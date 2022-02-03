@@ -11,15 +11,15 @@ function useVideo() {
     const [success, setSuccess] = useState(null)
     const {user} = useAuthContext()
 
-    const likeVideo = async (vedio) => {
+    const likeVideo = async (video) => {
 
         setPending(true)
         try{
             
-            let newLike = like.concat(vedio)
-            dispatchVideo({type: 'LIKE_VIDEO', payload: newLike})
+            await projectFirestore.collection(`/likes/${user.uid}/videos`).doc(video.id).set(video)
 
-            await projectFirestore.collection(`/likes/${user.uid}/videos`).doc(vedio.id).set(vedio)
+            let newLike = like.concat(video)
+            dispatchVideo({type: 'LIKE_VIDEO', payload: newLike})
 
         }catch(err)
         {
@@ -46,9 +46,14 @@ function useVideo() {
         setPending(false)
     }
 
-    const saveVideo = (video) => {
+    const saveVideo = async (video) => {
+
+        setPending(true)
 
         try{
+
+            await projectFirestore.collection(`/save/${user.uid}/videos`).doc(video.id).set(video)
+
             let newSave = save.concat(video)
 
             dispatchVideo({type: 'SAVE_VIDEO', payload: newSave})
@@ -56,13 +61,18 @@ function useVideo() {
         {
             console.log(err.message)
         }
+
+        setPending(false)
     }
 
-    const removeSave = (vedio) => {
+    const removeSave = async (video) => {
 
+        setPending(true)
         try{
             
-            let newSave = save.filter(ved => ved.id !== vedio.id)
+            await projectFirestore.collection(`/save/${user.uid}/videos`).doc(video.id).delete()
+
+            let newSave = save.filter(ved => ved.id !== video.id)
 
             dispatchVideo({type: 'REMOVE_SAVE', payload: newSave})
 
@@ -70,19 +80,31 @@ function useVideo() {
         {
             console.log(err.message)
         }
+
+        setPending(false)
     }
 
-    const addPlaylist = (playlistName) => {
+    const addPlaylist = async (playlistName) => {
+
+        setPending(true)
 
         try{
 
-            let newPlaylist = playlists.concat({id:3,name:playlistName})
+            const res = await projectFirestore.collection('playlist').doc(user.uid).collection('playlist').add({
+                name: playlistName,
+                videos: []
+            })
+
+            let newPlaylist = await playlists.concat({id:res.id,name:playlistName, videos: []})
 
             dispatchVideo({type: 'ADD_NEW_PLAYLIST', payload: newPlaylist})
+
         }catch(err)
         {
             console.log(err.message)
         }
+
+        setPending(false)
     }
 
     const addVideo = async (videoObj) => {
@@ -101,6 +123,67 @@ function useVideo() {
         
     }
 
+    const addVideoToPlaylist = async (playlist, video) => {
+
+        setPending(true)
+
+        try{
+
+            let newPlaylists = playlists
+            let newVideos = []
+            newPlaylists = newPlaylists.map(list => {
+                if(list.id !== playlist.id)
+                    return list
+                newVideos = list.videos.concat(video)
+
+                return {...list, videos: list.videos.concat(video)}
+            })
+
+            console.log({newVideos})
+
+            await projectFirestore.collection('playlist').doc(user.uid).collection('playlist').doc(playlist.id).update({
+                videos: newVideos
+            })
+
+            dispatchVideo({type: 'ADD_VIDEO_TO_PLAYLIST', payload: newPlaylists})
+
+        }catch(err){
+            console.log(err.message)
+        }
+
+        setPending(false)
+    }
+
+    const removeVideoFromPlaylist = async (playlist, video) => {
+
+        setPending(true)
+
+        try{
+
+            let newPlaylists = playlists
+            let newVideos = []
+            newPlaylists = newPlaylists.map(list => {
+                if(list.id !== playlist.id)
+                    return list
+                newVideos = list.videos.filter(vid => vid.id !== video.id)
+                return {...list, videos: list.videos.filter(vid => vid.id !== video.id)}
+            })
+
+            console.log({newVideos})
+            
+            await projectFirestore.collection('playlist').doc(user.uid).collection('playlist').doc(playlist.id).update({
+                videos: newVideos
+            })
+
+            dispatchVideo({type: 'REMOVE_VIDEO_FROM_PLAYLIST', payload: newPlaylists})
+
+        }catch(err){
+            console.log(err.message)
+        }
+
+        setPending(false)
+    }
+
     return {
         likeVideo,
         removeLike,
@@ -108,6 +191,8 @@ function useVideo() {
         removeSave,
         addVideo,
         addPlaylist,
+        addVideoToPlaylist,
+        removeVideoFromPlaylist,
         pending,
         success
     }

@@ -1,6 +1,7 @@
-import React from 'react';
+import {useState} from 'react';
 import './PlayList.css'
-
+import { projectFirestore } from '../../config/firebase';
+import useVideoContext from '../../hooks/useVideoContext';
 const playList = [
     {
         id:1,
@@ -50,6 +51,8 @@ const playList = [
 ]
 
 function PlayList() {
+
+    
   return (
       <div className="playlist__container">
         <div className="playlist__img">

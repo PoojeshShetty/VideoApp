@@ -59,10 +59,12 @@ function VideoPage() {
     }
     
     const handleSave = (video) => {
+        if(!pending)
         saveVideo(video)
     }
 
     const handleRemoveSave = (video) => {
+        if(!pending)
         removeSave(video)
     }
 
@@ -184,7 +186,7 @@ function VideoPage() {
         </div>
 
         {
-            showPlaylist && <PlaylistOption setShowPlaylist={setShowPlaylist}/>
+            showPlaylist && <PlaylistOption setShowPlaylist={setShowPlaylist} propsVideo={fetchVideo} />
         }
 
       </div>

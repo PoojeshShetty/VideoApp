@@ -2,10 +2,8 @@ import {useState, useEffect} from 'react';
 import Video from '../../component/video/Video';
 import { Link } from 'react-router-dom';
 import './ExplorePage.css'
-import { useVideo } from '../../hooks/useVideo';
-import { projectAuth, projectFirestore } from '../../config/firebase';
+import { projectFirestore } from '../../config/firebase';
 import Loading from '../../component/loading/Loading';
-
 
 function ExplorePage() {
 
@@ -39,6 +37,10 @@ function ExplorePage() {
     showVideo = showVideo.map(video => ({...video, srt: Math.random()}))
                         .sort((a,b) => a.srt - b.srt)
 
+    if(query !== "")
+        showVideo = showVideo.filter(video => (video.title.toLowerCase().includes(query.toLowerCase()) || video.profileName.toLowerCase().includes(query.toLowerCase())))
+
+    
     return (
         <div className="explorepage__container">
             <div className="explorepage__title">
@@ -52,16 +54,21 @@ function ExplorePage() {
             </span>
             </div>
 
+            {
+                showVideo.length === 0 ?
+                <div>No Video Present</div> :
+                <div className="explorepage__videos">
+                    {
+                        showVideo.map((video)=> 
+                            <Link key={video.id} to={`/video/${video.id}`}>
+                                <Video propVideo={video} />
+                            </Link>
+                        )
+                    }
+                </div>
+
+            }
             
-            <div className="explorepage__videos">
-                {
-                    showVideo.map((video)=> 
-                        <Link key={video.id} to={`/video/${video.id}`}>
-                            <Video propVideo={video} />
-                        </Link>
-                    )
-                }
-            </div>
         </div>
     )
 }
