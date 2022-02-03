@@ -50,17 +50,16 @@ const playList = [
     }
 ]
 
-function PlayList() {
+function PlayList({propsPlaylist}) {
 
-    
   return (
       <div className="playlist__container">
         <div className="playlist__img">
-            <img src={playList[0].thumbnailUrl} alt="" />
+            <img src={propsPlaylist.videos[0].thumbnailUrl} alt="" />
 
             <div className="playlist__icon">
                 <div className="playlist__length">
-                    {playList.length}
+                    {propsPlaylist.videos.length}
                 </div>
 
                 <div className="playlist__svg">
@@ -70,7 +69,7 @@ function PlayList() {
             </div>
         </div>
         <div className="playlist__name">
-            test playlist
+             {propsPlaylist.name}
         </div>
       </div>
   )

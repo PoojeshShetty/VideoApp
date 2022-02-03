@@ -15,17 +15,23 @@ import LikePage from './page/like/LikePage';
 import SavePage from './page/save/SavePage';
 import { useAuthContext } from './hooks/useAuthContext';
 import AddVideoPage from './page/admin/addVideo/AddVideoPage';
+import Loading from './component/loading/Loading';
 
 function App() {
 
   const [showSidebar, setShowSidebar] = useState(false)
 
   const context = useVideoContext()
-  const authcontext = useAuthContext()
+  const {user,isAuthReady} = useAuthContext()
   
-  console.log(authcontext)
+  console.log(user)
   console.log(context)
 
+  if(!isAuthReady)
+  return (
+    <Loading />
+  )
+  
   return (
     <div className="App">
         <Header showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
