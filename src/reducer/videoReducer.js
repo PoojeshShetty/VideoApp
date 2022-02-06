@@ -14,10 +14,18 @@ const videoReducer = (state, action) => {
             return {...state, playlists: action.payload}
         case 'PLAYLIST_FROM_SERVER':
             return {...state, playlists: action.payload}
+        case 'REMOVE_PLAYLIST':
+            return {...state, playlists: action.payload}
+        case 'LIKES_FROM_SERVER':
+            return {...state, like: action.payload}
+        case 'SAVE_FROM_SERVER':
+            return {...state, save: action.payload}
         case 'ADD_VIDEO_TO_PLAYLIST':
             return {...state, playlists: action.payload}
         case 'REMOVE_VIDEO_FROM_PLAYLIST':
             return {...state, playlists: action.payload}
+        case 'LOGOUT':
+            return {...initialVideoState}
         default:
             return state
     }
@@ -26,8 +34,7 @@ const videoReducer = (state, action) => {
 const initialVideoState = {
     like : [],
     playlists : [],
-    save : [],
-    notes: []
+    save : []
 }
 
 export {

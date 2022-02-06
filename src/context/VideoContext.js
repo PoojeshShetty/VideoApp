@@ -25,10 +25,48 @@ function VideoContextProvider({children}) {
           dispatchVideo({type: 'PLAYLIST_FROM_SERVER', payload: result})
         }
         
-
     }
 
     getPlaylist()
+
+  },[uid])
+
+  useEffect(()=>{
+    if(!uid) return
+
+    const getlikeVideos = async () => {
+
+        const res = await projectFirestore.collection('likes').doc(uid).collection('videos').get()
+
+        if(!res.empty)
+        {
+          let result = []
+          res.docs.forEach(doc => result.push({id:doc.id,...doc.data()}))
+          dispatchVideo({type: 'LIKES_FROM_SERVER', payload: result})
+        }
+        
+    }
+
+    getlikeVideos()
+
+  },[uid])
+
+  useEffect(()=>{
+    if(!uid) return
+
+    const getSavedVideos = async () => {
+
+        const res = await projectFirestore.collection('save').doc(uid).collection('videos').get()
+
+        if(!res.empty)
+        {
+          let result = []
+          res.docs.forEach(doc => result.push({id:doc.id,...doc.data()}))
+          dispatchVideo({type: 'SAVE_FROM_SERVER', payload: result})
+        }  
+    }
+
+    getSavedVideos()
 
   },[uid])
 

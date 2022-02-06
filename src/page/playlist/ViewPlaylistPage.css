@@ -17,3 +17,13 @@
     text-decoration: none;
     color: inherit;
 }
+
+.playlistpage__title .title{
+    font-size: 1.8rem;
+    font-weight: 900;
+}
+
+.playlistpage__title .btn{
+    margin-left: 1em;
+    padding:4px 8px;
+}

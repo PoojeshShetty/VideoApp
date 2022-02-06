@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import useVideoContext from './useVideoContext';
-import {projectFirestore} from '../config/firebase'
+import {projectFirestore,timeStamp} from '../config/firebase'
 import { useAuthContext } from './useAuthContext';
 
 function useVideo() {
@@ -184,6 +184,72 @@ function useVideo() {
         setPending(false)
     }
 
+    const addNote = async (note,videoId) => {
+
+        setPending(true)
+
+        try{
+
+            const createdAt = await timeStamp.fromDate(new Date())
+
+            await projectFirestore.collection('notes').doc(user.uid).collection('videos').doc(videoId).collection('notes').add({
+                ...note, createdAt
+            })
+        }catch(err)
+        {
+            console.log(err.message)
+        }
+        setPending(false)
+    }
+
+    const editNote = async (note,noteId,videoId) => {
+
+        setPending(true)
+
+        try{
+            await projectFirestore.collection('notes').doc(user.uid).collection('videos').doc(videoId).collection('notes').doc(noteId).update({
+                text:note
+            })
+        }catch(err)
+        {
+            console.log(err.message)
+        }
+        setPending(false)
+    }
+    
+    const deleteNote = async (noteId,videoId) => {
+
+        setPending(true)
+
+        try{
+            await projectFirestore.collection('notes').doc(user.uid).collection('videos').doc(videoId).collection('notes').doc(noteId).delete()
+        }catch(err)
+        {
+            console.log(err.message)
+        }
+        setPending(false)
+    }
+    
+    const deletePlaylist = async (playlistId) => {
+
+        setPending(true)
+
+        try{
+            await  projectFirestore.collection('playlist').doc(user.uid).collection('playlist').doc(playlistId).delete()
+
+            let newPlaylist = await playlists.filter(play => play.id !== playlistId)
+
+            dispatchVideo({type: 'REMOVE_PLAYLIST', payload: newPlaylist})
+
+            setSuccess(true)
+        }catch(err)
+        {
+            console.log(err.message)
+        }
+
+        setPending(false)
+    }
+
     return {
         likeVideo,
         removeLike,
@@ -193,8 +259,13 @@ function useVideo() {
         addPlaylist,
         addVideoToPlaylist,
         removeVideoFromPlaylist,
+        addNote,
+        editNote,
+        deleteNote,
+        deletePlaylist,
         pending,
-        success
+        success,
+        error
     }
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './Header.css'
 
 function Header({showSidebar, setShowSidebar}) {
@@ -15,7 +16,7 @@ function Header({showSidebar, setShowSidebar}) {
       <div className="header__container">
           
           <div className="header__content">
-            <span className="sidebar__btn" >
+                <span className="sidebar__btn" >
                     
                     {
                         !showSidebar ? 
@@ -28,9 +29,17 @@ function Header({showSidebar, setShowSidebar}) {
                     }
 
                 </span>
-              <div className="logo">
-                  Video App
-              </div>
+              <Link to="/home">
+                <div className="logo">
+                    <div className="logo__img">
+                        <img src="/svg/play_arrow.svg" alt="" />
+                    </div>
+
+                    <div className="logo__txt">
+                        Video App
+                    </div>
+                </div>
+              </Link>
           </div>
       </div>
   )

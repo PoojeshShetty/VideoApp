@@ -1,30 +1,55 @@
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { projectFirestore } from '../../config/firebase';
 import LoadingNotes from '../loadingnotes/LoadingNotes';
 import NoteText from '../notetext/NoteText';
 import './Note.css'
+import { useVideo } from '../../hooks/useVideo';
 
-const notes = [
-    {
-        text : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias eius deleniti aliquid est soluta ipsum consectetur suscipit ipsa tenetur quae voluptas harum ab, voluptates quam nam vel eos officiis voluptatum?",
-        id: '2'
-    },
-    {
-        text : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias eius deleniti aliquid est soluta ipsum consectetur suscipit ipsa tenetur quae voluptas harum ab, voluptates quam nam vel eos officiis voluptatum?",
-        id: '3'
-    },
-    {
-        text : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias eius deleniti aliquid est soluta ipsum consectetur suscipit ipsa tenetur quae voluptas harum ab, voluptates quam nam vel eos officiis voluptatum?",
-        id: '4'
-    },
-    {
-        text : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias eius deleniti aliquid est soluta ipsum consectetur suscipit ipsa tenetur quae voluptas harum ab, voluptates quam nam vel eos officiis voluptatum?",
-        id: '5'
-    }
-]
-
-function Note() {
+function Note({propsVideo}) {
 
     const [notevalue, setNoteValue] = useState('')
+    const [fetchNotes, setFetchNotes] = useState(null)
+    const {uid} = useAuthContext()
+    const {addNote,pending} = useVideo()
+
+    useEffect(()=>{
+        if(!uid) return
+
+        projectFirestore.collection('notes').doc(uid).collection('videos').doc(propsVideo.id).collection('notes').onSnapshot(docs => {
+            if(!docs.empty)
+            {
+                let result = []
+                docs.forEach(doc => result.push({id:doc.id,...doc.data()}))
+                result.sort((a,b) => a.createdAt.seconds - b.createdAt.seconds)
+                setFetchNotes(result)
+            }
+            else{
+                setFetchNotes([])
+            }
+        })
+
+    },[uid,propsVideo.id])
+
+    const handleAddNotes = () => {
+        if(notevalue === "")
+            return
+        
+        addNote({text:notevalue},propsVideo.id)
+        setNoteValue("")
+    }
+
+    if(!uid || !fetchNotes)
+    return(
+        <div className="note__container">
+
+            <div className="note__title">
+                Notes
+            </div>
+            <div>No notes to show</div>
+
+        </div>
+    )
 
     return (
         <div className="note__container">
@@ -34,11 +59,11 @@ function Note() {
             </div>
             <div className="note__content">
                 
-                {
-                    notes.map(note=>(
-                        <NoteText propNote={note} key={note.id} />
-                    ))
-                }
+            {
+                fetchNotes.map(note=>(
+                    <NoteText propNote={note} propsVideo={propsVideo} key={note.id} />
+                ))
+            }
                 
             </div>
             <div className="note__input">
@@ -48,11 +73,10 @@ function Note() {
                     placeholder='Take notes'
                     onChange={({target}) => setNoteValue(target.value)}
                 />
-                <button className='btn'>Add</button>
+                <button className='btn' onClick={(e) => handleAddNotes()}>Add</button>
             </div>
 
 
-            <LoadingNotes />
         </div>
     )
 }

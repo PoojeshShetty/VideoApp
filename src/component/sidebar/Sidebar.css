@@ -71,6 +71,10 @@
     height: 100%;
 }
 
+.btn--logout{
+    cursor: pointer;
+}
+
 @media screen and (min-width:1200px) {
     
     .sidebar__container{

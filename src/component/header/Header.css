@@ -10,6 +10,11 @@
     background-color: white;
 }
 
+.header__container a{
+    text-decoration: none;
+    color:inherit;
+}
+
 .header__content{
     width:1200px;
     max-width: 100%;
@@ -17,13 +22,25 @@
 }
 
 .logo{
-    display: inline-block;
+    display: inline-flex;
     font-size: 1.8rem;
     font-weight: bolder;
+    align-items: center;
+}
+
+.logo__img{
+    filter:invert(100%);
+    width: 1em;
+    height: 1em;
+}
+
+.logo__img img{
+    width: 100%;
+    height: 100%;
 }
 
 .sidebar__btn{
-    margin:0 1em;
+    margin:auto 1em;
     width:2em;
     height: 2em;
 }

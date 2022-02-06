@@ -171,7 +171,7 @@ function VideoPage() {
 
     
             <div className="flex__right">
-                <Note />
+                <Note propsVideo={fetchVideo}/>
             </div>
         </div>
 
