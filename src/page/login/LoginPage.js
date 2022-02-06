@@ -1,6 +1,5 @@
-import { getDefaultNormalizer } from '@testing-library/react';
 import {useState} from 'react';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link } from 'react-router-dom';
 import useLogin from '../../hooks/useLogin';
 import './LoginPage.css'
 
@@ -20,7 +19,7 @@ function LoginPage() {
   const handleGuestCredential = (e) => {
 
     e.preventDefault()
-    
+
     setEmail("test@gmail.com")
 
     setPassword("test@gmail.com")

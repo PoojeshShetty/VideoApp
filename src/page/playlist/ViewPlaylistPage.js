@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import './ViewPlaylistPage.css'
 import Video from '../../component/video/Video'
-import { useParams } from 'react-router-dom';
+import { useParams,Link,useHistory } from 'react-router-dom';
 import useVideoContext from '../../hooks/useVideoContext';
-import { Link,useHistory } from 'react-router-dom';
 import { useVideo } from '../../hooks/useVideo';
 
 function ViewPlayListPage() {

@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
 import useVideoContext from './useVideoContext';
 import {projectFirestore,timeStamp} from '../config/firebase'
 import { useAuthContext } from './useAuthContext';
@@ -9,7 +9,12 @@ function useVideo() {
     const [pending, setPending] = useState(false)
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(null)
+    const [cancelled, setCancelled] = useState(false)
     const {user} = useAuthContext()
+
+    useEffect(()=>{
+        return () => setCancelled(true)
+    },[])
 
     const likeVideo = async (video) => {
 
@@ -25,8 +30,10 @@ function useVideo() {
         {
             console.log(err.message)
         }
-
-        setPending(false)
+        
+        if(!cancelled)
+            if(!cancelled)
+            setPending(false)
     }
 
     const removeLike = async (video) => {
@@ -43,7 +50,8 @@ function useVideo() {
             console.log(err.message)
         }
 
-        setPending(false)
+        if(!cancelled)
+            setPending(false)
     }
 
     const saveVideo = async (video) => {
@@ -62,7 +70,8 @@ function useVideo() {
             console.log(err.message)
         }
 
-        setPending(false)
+        if(!cancelled)
+            setPending(false)
     }
 
     const removeSave = async (video) => {
@@ -81,7 +90,8 @@ function useVideo() {
             console.log(err.message)
         }
 
-        setPending(false)
+        if(!cancelled)
+            setPending(false)
     }
 
     const addPlaylist = async (playlistName) => {
@@ -104,7 +114,8 @@ function useVideo() {
             console.log(err.message)
         }
 
-        setPending(false)
+        if(!cancelled)
+            setPending(false)
     }
 
     const addVideo = async (videoObj) => {
@@ -119,7 +130,8 @@ function useVideo() {
             console.log(err.message)
         }
 
-        setPending(false)
+        if(!cancelled)
+            setPending(false)
         
     }
 
@@ -151,7 +163,8 @@ function useVideo() {
             console.log(err.message)
         }
 
-        setPending(false)
+        if(!cancelled)
+            setPending(false)
     }
 
     const removeVideoFromPlaylist = async (playlist, video) => {
@@ -181,7 +194,8 @@ function useVideo() {
             console.log(err.message)
         }
 
-        setPending(false)
+        if(!cancelled)
+            setPending(false)
     }
 
     const addNote = async (note,videoId) => {
@@ -199,7 +213,8 @@ function useVideo() {
         {
             console.log(err.message)
         }
-        setPending(false)
+        if(!cancelled)
+            setPending(false)
     }
 
     const editNote = async (note,noteId,videoId) => {
@@ -214,7 +229,8 @@ function useVideo() {
         {
             console.log(err.message)
         }
-        setPending(false)
+        if(!cancelled)
+            setPending(false)
     }
     
     const deleteNote = async (noteId,videoId) => {
@@ -227,7 +243,8 @@ function useVideo() {
         {
             console.log(err.message)
         }
-        setPending(false)
+        if(!cancelled)
+            setPending(false)
     }
     
     const deletePlaylist = async (playlistId) => {
@@ -247,7 +264,8 @@ function useVideo() {
             console.log(err.message)
         }
 
-        setPending(false)
+        if(!cancelled)
+            setPending(false)
     }
 
     return {

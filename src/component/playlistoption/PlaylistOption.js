@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react/cjs/react.development';
+import { useState } from 'react';
 import { useVideo } from '../../hooks/useVideo';
 import useVideoContext from '../../hooks/useVideoContext';
 import Loading from '../loading/Loading';

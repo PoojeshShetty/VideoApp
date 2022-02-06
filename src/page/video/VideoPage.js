@@ -61,7 +61,7 @@ function VideoPage() {
     }
 
     const handleShare = (video) => {
-        navigator.clipboard.writeText(`https://www.youtube.com/watch?v=${video.ytId}`)
+        navigator.clipboard.writeText(`https://videoapp-85262.web.app/video/${video.ytId}`)
     }
 
     if(!fetchVideo)

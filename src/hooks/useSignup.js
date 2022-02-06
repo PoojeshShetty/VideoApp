@@ -20,7 +20,6 @@ function useSignup() {
 
             const res = await projectAuth.createUserWithEmailAndPassword(email,password)
 
-            console.log(res.user)
             await projectFirestore.collection('users').doc(res.user.uid).set({
                 username,
                 email,

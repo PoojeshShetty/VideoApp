@@ -39,6 +39,11 @@ function Note({propsVideo}) {
         setNoteValue("")
     }
 
+    if(pending)
+    return(
+        <LoadingNotes />
+    )
+    
     if(!uid || !fetchNotes)
     return(
         <div className="note__container">

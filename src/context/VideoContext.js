@@ -21,7 +21,7 @@ function VideoContextProvider({children}) {
         {
           let result = []
           res.docs.forEach(doc => result.push({id:doc.id,...doc.data()}))
-          console.log(result)
+          
           dispatchVideo({type: 'PLAYLIST_FROM_SERVER', payload: result})
         }
         
