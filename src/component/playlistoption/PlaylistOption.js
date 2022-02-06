@@ -50,7 +50,7 @@ function PlaylistOption({setShowPlaylist, propsVideo}) {
                         type="text"
                         placeholder='Name' 
                         value={newPlaylistName}
-                        onChange={({target}) => setNewPlaylistName(target.value)}
+                        onChange={({target}) => setNewPlaylistName(target.value.trim())}
                     />
                 }
 

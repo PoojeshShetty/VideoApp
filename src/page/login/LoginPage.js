@@ -37,7 +37,7 @@ function LoginPage() {
                 type="email" 
                 placeholder='Email'
                 value={email} 
-                onChange={({target}) => setEmail(target.value)}
+                onChange={({target}) => setEmail(target.value.trim())}
                 required
               />
 
@@ -50,7 +50,7 @@ function LoginPage() {
                 type="password" 
                 placeholder='Password'
                 value={password} 
-                onChange={({target}) => setPassword(target.value)}
+                onChange={({target}) => setPassword(target.value.trim())}
                 required
               />
 

@@ -8,6 +8,7 @@ import './VideoPage.css'
 import { useParams } from 'react-router-dom';
 import { projectFirestore } from '../../config/firebase';
 import Loading from '../../component/loading/Loading';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 function VideoPage() {
 
@@ -16,6 +17,7 @@ function VideoPage() {
     const [showPlaylist, setShowPlaylist] = useState(false)
     const {id} = useParams()
     const [fetchVideo, setFetchVideo] = useState(null)
+    const {user} = useAuthContext()
 
     useEffect(()=>{
         window.scrollTo(0,0)
@@ -87,69 +89,71 @@ function VideoPage() {
                     {fetchVideo.title}
                 </div>
                 
+                {
+                    user && 
                 
-                <div className="videopage__action">
+                    <div className="videopage__action">
 
-                    {
-                        like.map(vedio=>vedio.id).includes(fetchVideo.id) ?
-                        <div className="action" onClick={()=>handleRemoveLike(fetchVideo)}>
-                            <div className="action__img btn--liked">
-                                <img src="/svg/like.svg" alt="" />
+                        {
+                            like.map(vedio=>vedio.id).includes(fetchVideo.id) ?
+                            <div className="action" onClick={()=>handleRemoveLike(fetchVideo)}>
+                                <div className="action__img btn--liked">
+                                    <img src="/svg/like.svg" alt="" />
+                                </div>
+                                <div className="action__type">
+                                    Like
+                                </div>
+                            </div> :
+                            <div className="action" onClick={()=>handleLike(fetchVideo)}>
+                                <div className="action__img">
+                                    <img src="/svg/like.svg" alt="" />
+                                </div>
+                                <div className="action__type">
+                                    Like
+                                </div>
                             </div>
-                            <div className="action__type">
-                                Like
+                        }
+
+                        {
+                            save.map(video=>video.id).includes(fetchVideo.id) ?
+                            <div className="action" onClick={()=>handleRemoveSave(fetchVideo)}>
+                                <div className="action__img">
+                                    <img src="/svg/addedbookmark.svg" alt="" />
+                                </div>
+                                <div className="action__type">
+                                    Save
+                                </div>
+                            </div> :
+                            <div className="action" onClick={() => handleSave(fetchVideo)}>
+                                <div className="action__img">
+                                    <img src="/svg/bookmark.svg" alt="" />
+                                </div>
+                                <div className="action__type">
+                                    Save
+                                </div>
                             </div>
-                        </div> :
-                        <div className="action" onClick={()=>handleLike(fetchVideo)}>
+                        }
+
+                        <div className="action" onClick={() => setShowPlaylist(true)}>
                             <div className="action__img">
-                                <img src="/svg/like.svg" alt="" />
+                                <img src="/svg/playList.svg" alt="" />
                             </div>
                             <div className="action__type">
-                                Like
+                                Add
                             </div>
                         </div>
-                    }
 
-                    {
-                        save.map(video=>video.id).includes(fetchVideo.id) ?
-                        <div className="action" onClick={()=>handleRemoveSave(fetchVideo)}>
+                        <div className="action" onClick={() => handleShare(fetchVideo)}>
                             <div className="action__img">
-                                <img src="/svg/addedbookmark.svg" alt="" />
+                                <img src="/svg/share.svg" alt="" />
                             </div>
                             <div className="action__type">
-                                Save
-                            </div>
-                        </div> :
-                        <div className="action" onClick={() => handleSave(fetchVideo)}>
-                            <div className="action__img">
-                                <img src="/svg/bookmark.svg" alt="" />
-                            </div>
-                            <div className="action__type">
-                                Save
+                                Share
                             </div>
                         </div>
-                    }
-
-                    <div className="action" onClick={() => setShowPlaylist(true)}>
-                        <div className="action__img">
-                            <img src="/svg/playList.svg" alt="" />
-                        </div>
-                        <div className="action__type">
-                            Add
-                        </div>
-                    </div>
-
-                    <div className="action" onClick={() => handleShare(fetchVideo)}>
-                        <div className="action__img">
-                            <img src="/svg/share.svg" alt="" />
-                        </div>
-                        <div className="action__type">
-                            Share
-                        </div>
-                    </div>
-                    
-                </div>
-
+                        
+                    </div>                              
+                }
                 <div className="viewvideo__info">
                     
                     <div className="profile">

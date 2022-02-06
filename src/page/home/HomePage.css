@@ -1,0 +1,105 @@
+
+.homepage__main{
+    padding: 3em 2em;
+    background-color: black;
+    color: white;
+    min-height: 300px;
+}
+
+.main__content{
+    text-align: center;
+    font-size: 4rem;
+    font-weight: 900;
+}
+
+.explore__link a{
+    display: block;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    margin:2em auto;
+    padding: 4px 8px;
+    font-size: 1.3rem;
+    width:100px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.homepage__view{
+    display: flex;
+    margin:4px;
+}
+
+.content__text{
+    width: 55%;
+    padding:2em 1em;
+    font-size: 1.8rem;
+    text-align: justify;
+}
+
+.text__main{
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin:10px 0;
+    text-align: center;
+}
+
+.content__img{
+    width:45%;
+}
+
+.content__img img{
+    width: 100%;
+    height: 100%;
+}
+
+footer{
+    padding:2em 1em;
+    border: 2px solid black;
+    font-size: 1.2rem;
+    font-weight: 900;
+    margin: 0 2px;
+}
+.footer__text{
+    text-align: center;
+}
+
+.footer__btn{
+    text-align: center;
+    margin-top: 0.5em;
+}
+.btn__img{
+    width:1.5em;
+    height: 1.5em;
+    display: inline-block;
+    margin:0 10px;
+}
+
+.btn__img img{
+    width:100%;
+    height: 100%;
+}
+
+@media screen and (min-width:700px) {
+
+    
+    .reverse__flex{
+        flex-direction: row-reverse;
+    }
+    
+    
+}
+@media screen and (max-width:700px) {
+    
+    .homepage__view{
+        display: block;
+    }
+
+    .content__img{
+        width:100%;
+    }
+
+    .content__text{
+        width: 100%;
+    }
+}

@@ -67,7 +67,7 @@ function SignupPage() {
                         type="text" 
                         placeholder='Username'
                         value={username} 
-                        onChange={({target}) => setUsername(target.value)}
+                        onChange={({target}) => setUsername(target.value.trim())}
                         required
                         />
 
@@ -80,7 +80,7 @@ function SignupPage() {
                         type="email" 
                         placeholder='Email'
                         value={email} 
-                        onChange={({target}) => setEmail(target.value)}
+                        onChange={({target}) => setEmail(target.value.trim())}
                         required
                         />
 
@@ -93,7 +93,7 @@ function SignupPage() {
                         type="password" 
                         placeholder='Password'
                         value={password} 
-                        onChange={({target}) => setPassword(target.value)}
+                        onChange={({target}) => setPassword(target.value.trim())}
                         required
                         />
 
