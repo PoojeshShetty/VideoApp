@@ -1,0 +1,83 @@
+.video__container{
+    width:300px;
+    position:relative;
+    transition: transform 0.3s ease;
+}
+
+.video__img{
+    width:300px;
+    height: 220px;
+}
+
+.video__img img{
+    width:100%;
+    height: 100%;
+}
+
+.video__info{
+    display: flex;
+    margin:0.5em 0;
+    align-items: center;
+}
+
+.video__profile{
+    margin:0 0.2em;
+    width: 2em;
+    height: 2em;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.video__profile img{
+    width: 100%;
+    height: 100%;
+}
+
+.video__text{
+    margin-left: 0.5em;
+}
+
+.video__title{
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.play__icon{
+    background-color: rgba(0,0,0,0.6);
+    padding:10px;
+    width:3em;
+    height: 3em;
+    position: absolute;
+    top:90px;
+    left: 130px;
+    border-radius: 10px;
+}
+
+.play__icon img{
+    width:90%;
+    height: 90%;
+}
+
+.search__input{
+    width:400px;
+    max-width: 100%;
+}
+
+.search__input input{
+    width:100%;
+    padding:8px 5px;
+    font-size: 1.1rem;
+}
+
+@media screen and (min-width:600px) {
+    .search__input{
+        display: inline-block;
+        margin-left: 2em;
+    }
+}
+@media screen and (max-width:600px) {
+    .search__input{
+        margin-top: 0.7em;
+        display: block;
+    }
+}

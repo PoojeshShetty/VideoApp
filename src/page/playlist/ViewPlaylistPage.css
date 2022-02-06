@@ -1,0 +1,29 @@
+.playlistpage__container{
+    padding:10px;
+}
+
+.playlist__video{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+    gap: 10px;
+}
+
+.playlist__video .video__container{
+    margin:0 auto;
+}
+
+.playlist__video a{
+    margin:0 auto;
+    text-decoration: none;
+    color: inherit;
+}
+
+.playlistpage__title .title{
+    font-size: 1.8rem;
+    font-weight: 900;
+}
+
+.playlistpage__title .btn{
+    margin-left: 1em;
+    padding:4px 8px;
+}

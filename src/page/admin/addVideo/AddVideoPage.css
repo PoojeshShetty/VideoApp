@@ -1,0 +1,21 @@
+.addvideo__container{
+    padding:10px;
+}
+
+.addvideo__title{
+    font-size: 1.9rem;
+    font-weight: 900;
+    padding:0.3em 0;
+    border-bottom: 1px solid #777;
+}
+
+.addvideo__form{
+    width:500px;
+    margin:0 auto;
+    max-width: 100%;
+}
+
+.addvideo__form .btn{
+    padding:4px 8px;
+    font-size: 1.2rem;
+}

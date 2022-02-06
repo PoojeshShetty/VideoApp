@@ -1,0 +1,48 @@
+.likepage__container{
+    padding:15px;
+}
+
+.likepage__title{
+    font-size: 1.7rem;
+    font-weight: 900;
+    margin: 1em 0;
+}
+
+.likepage__videos{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+    gap: 15px;
+}
+
+.likepage__videos a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.likepage__video{
+    position: relative;
+}
+
+.likepage__video .video__container{
+    margin: 0 auto;
+}
+
+.likepage__video .video__container:hover{
+    transform: scale(1.1);
+}
+
+.close__btn{
+    position:absolute;
+    top:5px;
+    right:2em;
+    width: 1.5em;
+    height: 1.5em;
+    background-color: white;
+    border-radius: 50%;
+    border:1px solid #777;
+}
+
+.close__btn img{
+    width: 100%;
+    height: 100%;
+}

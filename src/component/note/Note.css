@@ -1,0 +1,92 @@
+.note__container{
+    border:1px black solid;
+    height: inherit;
+    position: relative;
+    overflow:hidden;
+}
+
+.note__title{
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 800;
+    padding: 0.2em 0.1em;
+
+}
+.note__input{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right:0;
+    padding:8px 4px;
+    border:1px solid #777;
+    background-color: white;
+}
+
+.note__input .btn{
+    margin-top: 0.4em;
+    padding:4px 8px;
+}
+
+.note__content{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-bottom: 2em;
+    height: 80%;
+}
+
+.note__content::-webkit-scrollbar{
+    width:0.5em;
+}
+
+.note__content::-webkit-scrollbar-track{
+    background-color: rgba(0.0.0.0.1);
+}
+
+.note__content::-webkit-scrollbar-thumb{
+    background-color: #777;
+}
+.note__content .note{
+    padding:5px;
+    border: 1px solid #777;
+    margin:2px;
+    display: flex;
+}
+
+.note__action .btn{
+    margin:0.5em;
+    width:100%;
+}
+
+.note__text{
+    width: 80%;
+    text-align: justify;
+}
+
+.note__text textarea{
+    width:100%;
+    resize: none;
+    text-align: justify;
+}
+
+.note > * {
+    flex-basis: 1;
+}
+.note__action{
+    width:20%;
+    padding:2px;
+}
+
+.note__input input{
+    width: 100%;
+    padding:4px;
+    border: 1px solid black;
+}
+
+.note__action .btn{
+    padding:2px 4px;
+    width:100%;
+}
+
+.note{
+    position: relative;
+}

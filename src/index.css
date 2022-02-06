@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    margin:0;
+}
+
+.btn{
+    background: none;
+    border:1px solid black;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: white;
+    color:black;
+}
+
+.btn--disabled{
+    background-color: white;
+    color:black;
+    cursor:context-menu;
+}
+
+.btn--delete{
+    background-color: pink;
+    color: red;
+    border: 1px solid red;
+}
+
+.error--info{
+    padding:4px 8px;
+    border: 1px solid red;
+    background-color: pink;
+    color: red;
+    margin:0.5em;
+}
+
+.info--page{
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-align: center;
+    margin-top: 5em;
+}

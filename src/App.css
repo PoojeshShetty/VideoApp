@@ -1,0 +1,17 @@
+.App__container{
+    margin-top: 5rem;
+    padding-bottom: 10px;
+    min-height: 90vh;
+}
+
+
+@media screen and (min-width:1200px) {
+    
+    .App__container{
+        margin-left: 15rem;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    
+}

@@ -1,0 +1,150 @@
+.videopage__container{
+    padding:1em 2em;
+}
+
+.viewvideo{
+    display: flex;
+    justify-content: space-between;
+}
+
+.viewvideo__info{
+    border-top:1px solid #777;
+    border-bottom: 1px solid #777;
+    margin:0.5em 0;
+    padding:1em 0;
+}
+
+.videopage__title{
+    font-size: 1.7rem;
+    margin-top: 0.8em;
+    word-spacing: 0.3ch;
+    letter-spacing: 0.15ch;
+    font-weight: 600;
+}
+
+.videopage__action{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 0.8em;
+}
+
+.action{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.action__type{
+    text-align: center;
+}
+
+.action .action__img{
+    width:2em;
+    height:2em;
+}
+
+.action__img img{
+    width:100%;
+    height: 100%;
+}
+
+.action .action__type{
+    font-weight: 900;
+}
+
+.flex__right{
+    margin-right: 20px;
+}
+
+.profile{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
+.profile .profile__img{
+    width:3em;
+    height: 3em;
+    margin-right:0.5em;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile .profile__name{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.profile__img img{
+    width:100%;
+    height:100%;
+}
+
+.videopage__description{
+    font-size: 1.1rem;
+    word-spacing: 0.3ch;
+    text-align: justify;
+}
+
+.btn--liked{
+    background-color: black;
+    border-radius: 50%;
+    padding:2px;
+}
+
+.btn--liked img{
+    width:90%;
+    height: 90%;
+    filter: invert(100%)
+}
+
+@media screen and (min-width:1200px){
+    
+    .viewvideo{
+        flex-direction: row;
+    }
+
+    .flex__left{
+        width:70%;
+        max-width: 100%;
+    }
+
+    .flex__right{
+        width:25%;
+        height:30vw;
+    }
+
+    .playvideo{
+        height: 30vw;
+    }
+    
+}
+
+@media screen and (max-width:1200px) {
+
+    .viewvideo{
+        flex-direction: column;
+    }
+    
+    .flex__left{
+        width: 100%;
+    }
+
+    .flex__right{
+        width:100%;
+        height: 400px;
+    }
+    
+    .playvideo{
+        height: 50vw;
+    }
+
+}
+
+@media screen and (max-width:600px) {
+    
+    .playvideo{
+        height: 60vw;
+    }
+}
