@@ -69,7 +69,7 @@ function VideoPage() {
 
     if(fetchVideo === 'notexist')
     return (
-        <div>Could not find video</div>
+        <div className='info--page'>Could not find video</div>
     )
   return (
       <div className="videopage__container">

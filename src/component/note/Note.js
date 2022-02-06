@@ -46,7 +46,7 @@ function Note({propsVideo}) {
             <div className="note__title">
                 Notes
             </div>
-            <div>No notes to show</div>
+            <div className='info--page'>No notes to show</div>
 
         </div>
     )

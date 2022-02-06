@@ -24,7 +24,7 @@ function Sidebar({showSidebar, setShowSidebar}) {
               
             <ul className='sidebar__links'>
                 <li>
-                    <NavLink to="/Home">
+                    <NavLink to="/home">
                         <div className="sidebar__link" onClick={closeSidebar}>
                             <div className="link__img">
                                 <img src="/svg/home.svg" alt="" />
@@ -48,6 +48,22 @@ function Sidebar({showSidebar, setShowSidebar}) {
                         </div>
                     </NavLink>
                 </li>
+
+                {
+                    user && user.type === "admin" && 
+                    <li>
+                        <NavLink to="/admin/addvideo">
+                            <div className="sidebar__link" onClick={closeSidebar}>
+                                <div className="link__img">
+                                    <img src="/svg/add_circle.svg" alt="" />
+                                </div>
+                                <div className="link__name">
+                                    Add Videos
+                                </div>
+                            </div>
+                        </NavLink>
+                    </li>
+                }
 
                 <li>
                     <NavLink to="/playlists">

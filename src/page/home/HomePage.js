@@ -58,13 +58,13 @@ function HomePage() {
             </div>
 
             <div className="footer__btn">
-              <a target="_blank" className="btn__img" href="https://www.linkedin.com/in/poojesh-shetty/">
+              <a target="_blank" className="btn__img" href="https://www.linkedin.com/in/poojesh-shetty/" rel="noreferrer">
                 <img src="https://w7.pngwing.com/pngs/370/508/png-transparent-logo-linkedin-computer-icons-social-media-linked-angle-text-logo.png" alt="linkedin" />
               </a>
-              <a target="_blank" className="btn__img" href="https://twitter.com/ShettyPoojesh">
+              <a target="_blank" className="btn__img" href="https://twitter.com/ShettyPoojesh" rel="noreferrer">
                 <img src="https://toppng.com/uploads/preview/twitter-logo-black-11549680426ohdamjlf5z.png" alt="twitter" />
               </a>
-              <a target="_blank" className="btn__img" href="https://github.com/PoojeshShetty">
+              <a target="_blank" className="btn__img" href="https://github.com/PoojeshShetty" rel="noreferrer">
                 <img src="https://www.kindpng.com/picc/m/694-6943896_github-logo-png-github-icon-png-transparent-png.png" alt="github" />
               </a>
             </div>

@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import useSignup from '../../hooks/useSignup';
 import './SignupPage.css'
 
@@ -104,6 +105,10 @@ function SignupPage() {
                         <button className='btn btn--disabled' disabled>Submit</button> :
                         <button className='btn'>Submit</button>
                     }
+
+                    <div className="signup__links">
+                        Have an account ? <Link to="/login">Login</Link>
+                    </div>
                 </form> 
             </div>
         </div>

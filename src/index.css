@@ -42,3 +42,10 @@ body{
     color: red;
     margin:0.5em;
 }
+
+.info--page{
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-align: center;
+    margin-top: 5em;
+}

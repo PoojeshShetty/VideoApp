@@ -28,7 +28,7 @@ function ViewPlayListPage() {
 
   if(!playlist)
   return(
-    <div>Playlist does not exist</div>
+    <div className='info--page'>Playlist does not exist</div>
   )
   
   if(playlist.videos.length === 0)
@@ -39,7 +39,7 @@ function ViewPlayListPage() {
           </div>
 
           <div className="playlist__video">
-           <div>Playlist is empty. Add videos to your playlist</div>
+           <div className='info--page'>Playlist is empty. Add videos to your playlist</div>
           </div>
       </div>
     

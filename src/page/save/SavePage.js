@@ -20,7 +20,7 @@ function SavePage() {
 
     if(save.length === 0)
     return (
-        <div>No saved videos</div>
+        <div className='info--page'>No saved videos</div>
     )
 
   return (

@@ -19,6 +19,8 @@ function ExplorePage() {
                 let result = []
                 res.docs.forEach(doc => result.push({id:doc.id, ...doc.data()}))
 
+                result = result.map(video => ({...video, srt: Math.random()}))
+                        .sort((a,b) => a.srt - b.srt)
                 setFetchVideos(result)
 
             }else
@@ -33,9 +35,6 @@ function ExplorePage() {
     return <Loading />
 
     let showVideo = fetchVideos
-
-    showVideo = showVideo.map(video => ({...video, srt: Math.random()}))
-                        .sort((a,b) => a.srt - b.srt)
 
     if(query !== "")
         showVideo = showVideo.filter(video => (video.title.toLowerCase().includes(query.toLowerCase()) || video.profileName.toLowerCase().includes(query.toLowerCase())))
@@ -56,7 +55,7 @@ function ExplorePage() {
 
             {
                 showVideo.length === 0 ?
-                <div>No Video Present</div> :
+                <div  className='info--page'>No Video Present</div> :
                 <div className="explorepage__videos">
                     {
                         showVideo.map((video)=> 

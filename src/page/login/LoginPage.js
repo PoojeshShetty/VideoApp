@@ -1,4 +1,6 @@
+import { getDefaultNormalizer } from '@testing-library/react';
 import {useState} from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import useLogin from '../../hooks/useLogin';
 import './LoginPage.css'
 
@@ -13,6 +15,15 @@ function LoginPage() {
       e.preventDefault()
 
       login(email,password)
+  }
+
+  const handleGuestCredential = (e) => {
+
+    e.preventDefault()
+    
+    setEmail("test@gmail.com")
+
+    setPassword("test@gmail.com")
   }
 
   return (
@@ -56,12 +67,19 @@ function LoginPage() {
 
             </div>
             
+            <div className="loginbtn__collection">
             {
               pending ? 
               <button className='btn btn--disabled' disabled>Loading</button> :
               <button className='btn'>Submit</button>
             }
+            <button className='btn' onClick={(e) => handleGuestCredential(e)}>Guest Credential</button>
 
+            </div>
+
+            <div className="login__links">
+              Don't have an account ? <Link to="/signup">Sign Up</Link>
+            </div>
           </form>
       </div>
   )

@@ -20,7 +20,7 @@ function LikePage() {
     
     if(like.length === 0)
     return (
-        <div>
+        <div className='info--page'>
             No liked videos
         </div>
     )

@@ -20,7 +20,7 @@ function PlayListPage() {
           <div className="playlistpage__title">
               PlayLists
           </div>
-          <div className="playlistpage__videos">
+          <div className="info--page">
               No Videos present
           </div>
         </div>
