@@ -1,4 +1,4 @@
-import React from 'react';
+import {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import Video from '../../component/video/Video';
 import { useVideo } from '../../hooks/useVideo';
@@ -9,6 +9,10 @@ function SavePage() {
 
     const {save} = useVideoContext()
     const {removeSave, pending} = useVideo()
+
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    },[])
 
     const handleRemoveSave = (video,e) => {
 

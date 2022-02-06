@@ -19,6 +19,10 @@ function ViewPlayListPage() {
     history.push('/playlists')
   },[success,history])
 
+  useEffect(()=>{
+      window.scrollTo(0,0)
+  },[])
+
   const handleDeleteClick = () => {
     deletePlaylist(id)
   }

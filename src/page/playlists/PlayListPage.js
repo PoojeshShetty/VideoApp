@@ -1,4 +1,4 @@
-import React from 'react';
+import {useEffect} from 'react';
 import PlayList from '../../component/playlist/PlayList';
 import useVideoContext from '../../hooks/useVideoContext';
 import './PlayListPage.css'
@@ -7,6 +7,10 @@ import {Link} from 'react-router-dom'
 function PlayListPage() {
 
     const {playlists} = useVideoContext()
+
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    },[])
 
     const viewPlaylists = playlists.map(playlist => playlist.videos.length > 0 && (
                     <Link to={`/playlist/${playlist.id}`} key={playlist.id}>

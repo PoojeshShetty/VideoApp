@@ -1,4 +1,4 @@
-import React from 'react';
+import {useEffect} from 'react';
 import './LikePage.css'
 import {Link} from 'react-router-dom'
 import Video from '../../component/video/Video';
@@ -9,6 +9,10 @@ function LikePage() {
 
     const {like} = useVideoContext()
     const {removeLike,pending} = useVideo()
+
+    useEffect(()=>{
+        window.scrollTo(0,0)
+    },[])
 
     const handleRemoveLike = (video,e) => {
 
