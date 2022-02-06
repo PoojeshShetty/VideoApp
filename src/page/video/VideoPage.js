@@ -118,7 +118,7 @@ function VideoPage() {
                             save.map(video=>video.id).includes(fetchVideo.id) ?
                             <div className="action" onClick={()=>handleRemoveSave(fetchVideo)}>
                                 <div className="action__img">
-                                    <img src="/svg/addedbookmark.svg" alt="" />
+                                    <img src="/svg/addedBookmark.svg" alt="" />
                                 </div>
                                 <div className="action__type">
                                     Save
