@@ -15,6 +15,7 @@ import SavePage from './page/save/SavePage';
 import { useAuthContext } from './hooks/useAuthContext';
 import AddVideoPage from './page/admin/addVideo/AddVideoPage';
 import Loading from './component/loading/Loading';
+import Toast from './component/toast/Toast';
 
 function App() {
 
@@ -28,6 +29,9 @@ function App() {
 
   return (
     <div className="App">
+
+        <Toast />
+        
         <Header showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
 
           <div className="App__container">
@@ -101,6 +105,7 @@ function App() {
           
           
         <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+
     </div>
   );
 }
