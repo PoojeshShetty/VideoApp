@@ -1,0 +1,35 @@
+.toast__container{
+    position: fixed;
+    width: 200px;
+    top:6rem;
+    right:1em;
+    opacity: 0.9;
+    z-index: 900;
+}
+
+.toast__text{
+    margin:0.5em 0;
+    padding:6px 8px;
+    background-color: black;
+    color:white;
+    border:1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.1rem;
+}
+
+.toast__close{
+    width:1em;
+    height: 1em;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 50%;
+    padding:2px;
+    display: flex;
+}
+
+.toast__close img{
+    width: 100%;
+    height: 100%;
+}

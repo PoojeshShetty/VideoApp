@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import { projectFirestore } from '../../config/firebase';
 import Loading from '../../component/loading/Loading';
 import { useAuthContext } from '../../hooks/useAuthContext';
+import useToastContext from '../../hooks/useToastContext';
 
 function VideoPage() {
 
@@ -18,6 +19,7 @@ function VideoPage() {
     const {id} = useParams()
     const [fetchVideo, setFetchVideo] = useState(null)
     const {user} = useAuthContext()
+    const {dispatchToast} = useToastContext()
 
     useEffect(()=>{
         window.scrollTo(0,0)
@@ -40,6 +42,11 @@ function VideoPage() {
         fetchVideo()
     },[id])
 
+    const handleShare = (video) => {
+        navigator.clipboard.writeText(`https://videoapp-85262.web.app/video/${video.id}`)
+        dispatchToast({type:'ADD',payload: 'Link copied'})
+    }
+
     const handleLike = (video) => {
         if(!pending) 
         likeVideo(video)
@@ -58,10 +65,6 @@ function VideoPage() {
     const handleRemoveSave = (video) => {
         if(!pending)
         removeSave(video)
-    }
-
-    const handleShare = (video) => {
-        navigator.clipboard.writeText(`https://videoapp-85262.web.app/video/${video.id}`)
     }
 
     if(!fetchVideo)
